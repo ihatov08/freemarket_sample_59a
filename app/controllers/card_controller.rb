@@ -2,9 +2,6 @@ class CardController < ApplicationController
   before_action :authenticate_user!
   before_action :set_pulldown, only: [:new, :show]
 
-  require 'payjp'
-  Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-
   def new
     redirect_to action: 'show' if current_user.card.present?
   end

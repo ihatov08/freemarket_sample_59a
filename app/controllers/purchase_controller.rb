@@ -5,9 +5,6 @@ class PurchaseController < ApplicationController
   before_action :full_name, only: [:done]
   before_action :authenticate_user!
 
-  require 'payjp'
-  Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-
   def show
     card = Card.find_by(user_id: current_user.id)
     @address_info = Prefecture.find(current_user.prefecture_id).name + current_user.city + current_user.address1 + current_user.address2
